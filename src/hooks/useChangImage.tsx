@@ -8,7 +8,7 @@ const useChangImage = (setValue: UseFormSetValue<FieldValues>) => {
     setValue("image", files);
     setUrlImage(URL.createObjectURL(files[0]));
   };
-  return { urlImage, handleChangValueImage };
+  return { urlImage, handleChangValueImage, setUrlImage };
 };
 
 export default useChangImage;

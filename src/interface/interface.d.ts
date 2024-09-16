@@ -58,13 +58,19 @@ interface IDataAddCategory {
 
 interface IModalDelete {
   itemDelete: string[] | IItemToDelete;
-  setCheckCallApi: React.Dispatch<React.SetStateAction<boolean>>;
+  reloadState: () => void;
+  cleanItemToDelete: () => void;
 }
 
 interface IDataSubmitCategory {
   name: string;
   price_type: string;
   image?: File[] | string;
+}
+
+interface PaginationTableProps {
+  count: number;
+  cleanItemToDelete: () => void;
 }
 
 interface IPropFormActionCategory {
@@ -88,4 +94,31 @@ interface IPropFormActionCategory {
     },
     undefined
   >;
+  action: string;
+  urlImageEdit?: string;
+}
+
+interface IPropControllerImage {
+  setValue: UseFormSetValue<FieldValues>;
+  control: Control<TFieldValues, TestContext>;
+  urlImageEdit?: string;
+  errors: FieldErrors<TFieldValues>;
+}
+
+interface IPropControllerInput {
+  control: Control<TFieldValues, TestContext>;
+  errors: FieldErrors<TFieldValues>;
+  name: string;
+  label: string;
+  required: boolean;
+  type: string;
+}
+
+interface IDataControllerSelect {
+  value: string;
+  name: string;
+}
+
+interface IPropControllerSelect extends IPropControllerInput {
+  data: IDataControllerSelect[];
 }

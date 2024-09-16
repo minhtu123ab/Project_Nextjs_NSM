@@ -25,7 +25,7 @@ const useSelectDelete = (data: IIdData[]) => {
     });
   };
 
-  return {
+  return { 
     checkAll,
     idDelete,
     setCheckAll,

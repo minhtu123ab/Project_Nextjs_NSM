@@ -3,7 +3,15 @@ import useSetQueryParams from "@/hooks/useSetQueryParams";
 import { Pagination } from "@mui/material";
 import React, { useEffect } from "react";
 
-const PaginationTable = ({ count }: { count: number }) => {
+interface PaginationTableProps {
+  count: number;
+  cleanItemToDelete: () => void;
+}
+
+const PaginationTable: React.FC<PaginationTableProps> = ({
+  count,
+  cleanItemToDelete,
+}) => {
   const setQueryParams = useSetQueryParams();
   const queryParams = useGetQueryParams();
 
@@ -30,6 +38,7 @@ const PaginationTable = ({ count }: { count: number }) => {
         color="primary"
         onChange={(event, value) => {
           setQueryParams("page", value.toString());
+          cleanItemToDelete();
         }}
         page={Number(queryParams.page || 1)}
       />

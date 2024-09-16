@@ -70,7 +70,7 @@ const Page = () => {
   };
 
   return (
-    <div className="p-10 px-36 w-screen h-screen bg-gray-200">
+    <div className="flex items-center justify-center px-36 w-screen h-screen bg-gray-200">
       <Paper className="flex font-mono rounded-2xl overflow-hidden shadow-2xl">
         <div className="flex-[3] rounded-e-full bg-cyan-400 flex flex-col justify-center items-center text-white">
           <h1 className="text-5xl font-bold mb-4">Welcome Back!</h1>
