@@ -27,7 +27,7 @@ const useFormActions = (actionType?: actionType, id?: string) => {
       formData.append("basic_price", data.basic_price.toString());
       data.type
         ? formData.append("type", data.type.toString())
-        : formData.append("type", "0");
+        : formData.append("type", "");
       formData.append("large_title", data.large_title);
       Array.isArray(data.image) && formData.append("image", data.image[0]);
 

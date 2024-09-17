@@ -17,17 +17,20 @@ const PaginationTable: React.FC<PaginationTableProps> = ({
 
   useEffect(() => {
     if (Number(queryParams.page) <= 0) {
-      setQueryParams("page", "1");
+      setQueryParams({
+        page: "1",
+      });
     }
     if (
       count &&
       Number(queryParams.page) >
         Math.ceil(count / Number(process.env.NEXT_PUBLIC_COUNT))
     ) {
-      setQueryParams(
-        "page",
-        Math.ceil(count / Number(process.env.NEXT_PUBLIC_COUNT)).toString()
-      );
+      setQueryParams({
+        page: Math.ceil(
+          count / Number(process.env.NEXT_PUBLIC_COUNT)
+        ).toString(),
+      });
     }
   }, [count, queryParams.page, setQueryParams]);
 
@@ -37,7 +40,9 @@ const PaginationTable: React.FC<PaginationTableProps> = ({
         count={Math.ceil(count / Number(process.env.NEXT_PUBLIC_COUNT))}
         color="primary"
         onChange={(event, value) => {
-          setQueryParams("page", value.toString());
+          setQueryParams({
+            page: value.toString(),
+          });
           cleanItemToDelete();
         }}
         page={Number(queryParams.page || 1)}

@@ -23,6 +23,7 @@ import useFetchData from "@/hooks/useFetchData";
 import useHandleModalDelete from "@/hooks/useHandleModalDelete";
 import useNavigateAction from "@/hooks/useNavigateAction";
 import LoadingTableMaterial from "./LoadingTableMaterial";
+import NoDataTable from "@/components/table/NoDataTable";
 
 const dataHeaderTable = data.dataHeaderTable;
 
@@ -173,15 +174,7 @@ const TableMaterial = () => {
                   </TableRow>
                 ))
               ) : (
-                <TableRow>
-                  <TableCell
-                    className="text-4xl font-mono font-bold text-gray-500"
-                    colSpan={6}
-                    align="center"
-                  >
-                    No data
-                  </TableCell>
-                </TableRow>
+                <NoDataTable size={dataHeaderTable.length} />
               )
             ) : (
               Array.from({

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Paper, CircularProgress, IconButton } from "@mui/material";
+import { Button, Paper, CircularProgress } from "@mui/material";
 import ControllerImage from "@/components/controllerTags/ControllerImage";
 import ControllerInput from "@/components/controllerTags/ControllerInput";
 import ControllerSelect from "@/components/controllerTags/ControllerSelect";
@@ -9,7 +9,7 @@ import useSubmitNoDoubleClick from "@/hooks/useSubmitNoDoubleClick";
 import useFormActions from "../../hooks/useFormActions";
 import withDataFetching from "@/HOC/withDataFetching";
 import data from "@/app/admin/resources/material/data/data.json";
-import { Cached, Replay } from "@mui/icons-material";
+import { Replay } from "@mui/icons-material";
 
 const urls = data.urls;
 const dataControllerInputLeft = data.dataControllerInputLeft;
@@ -38,17 +38,14 @@ const FormActionMaterial: React.FC<
 
   if (loadingHoc)
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center items-center mt-60">
         <CircularProgress size={80} thickness={4.5} /> {/* Loading icon lớn */}
       </div>
     );
 
   if (error)
     return (
-      <div className="flex justify-center flex-col items-center h-screen">
-        <IconButton onClick={fetchData} color="primary" size="large">
-          <Cached fontSize="large" /> {/* Nút reload có icon lớn */}
-        </IconButton>
+      <div className="flex justify-center flex-col items-center mt-60">
         <Button
           variant="contained"
           color="primary"

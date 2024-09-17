@@ -13,10 +13,14 @@ const InputSearch = () => {
   const setQueryParams = useSetQueryParams();
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    setQueryParams("name", search);
+    setQueryParams({
+      name: search,
+    });
   };
   const onClear = () => {
-    setQueryParams("name", "");
+    setQueryParams({
+      name: "",
+    });
     setSearch("");
   };
   return (

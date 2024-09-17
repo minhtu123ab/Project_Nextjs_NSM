@@ -22,6 +22,8 @@ import TableHeaderAction from "@/components/table/TableHeaderAction";
 import useFetchData from "@/hooks/useFetchData";
 import useHandleModalDelete from "@/hooks/useHandleModalDelete";
 import useNavigateAction from "@/hooks/useNavigateAction";
+import { IconButton } from "@mui/material";
+import NoDataTable from "@/components/table/NoDataTable";
 
 const dataHeaderTable = data.dataHeaderTable;
 
@@ -117,21 +119,16 @@ const TableCategory = () => {
                     </TableCell>
                     <TableCell align="center">
                       <div className="flex justify-center items-center">
-                        <div
-                          onClick={(e) => navigateUpdate(e, item.id)}
-                          className="cursor-pointer hover:bg-slate-200 p-2 rounded-lg"
-                        >
+                        <IconButton onClick={(e) => navigateUpdate(e, item.id)}>
                           <Image
                             src={"/iconEdit.svg"}
                             alt=""
                             width={22}
                             height={22}
+                            className="w-auto h-auto"
                           />
-                        </div>
-                        <div
-                          onClick={(e) => openModalDelete(e, item)}
-                          className="cursor-pointer hover:bg-slate-200 p-2 rounded-lg"
-                        >
+                        </IconButton>
+                        <IconButton onClick={(e) => openModalDelete(e, item)}>
                           <Image
                             src={"/iconDelete.svg"}
                             alt=""
@@ -139,21 +136,13 @@ const TableCategory = () => {
                             height={22}
                             className="w-auto h-auto"
                           />
-                        </div>
+                        </IconButton>
                       </div>
                     </TableCell>
                   </TableRow>
                 ))
               ) : (
-                <TableRow>
-                  <TableCell
-                    className="text-4xl font-mono font-bold text-gray-500"
-                    colSpan={6}
-                    align="center"
-                  >
-                    No data
-                  </TableCell>
-                </TableRow>
+                <NoDataTable size={dataHeaderTable.length} />
               )
             ) : (
               Array.from({
