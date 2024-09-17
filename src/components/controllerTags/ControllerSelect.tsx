@@ -30,14 +30,14 @@ const ControllerSelect: React.FC<IPropControllerSelect> = ({
               placeholder={label}
             >
               {data.map((item, index) => (
-                <MenuItem value={item.value} key={index}>
+                <MenuItem value={item.id} key={index}>
                   {item.name}
                 </MenuItem>
               ))}
             </Select>
           )}
         />
-        {errors.price_type && (
+        {errors[name] && (
           <span className="text-red-500">{errors[name].message}</span>
         )}
       </div>

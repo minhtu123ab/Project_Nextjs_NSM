@@ -38,7 +38,9 @@ const TableCategory = () => {
 
   const { navigateUpdate } = useNavigateAction("formActions/update");
 
-  const { state, reloadState } = useFetchData("/material_categories");
+  const { state, reloadState } = useFetchData<IDataCategory>(
+    "/material_categories"
+  );
 
   const cleanItemToDelete = () => {
     setIdDelete([]);
@@ -170,12 +172,14 @@ const TableCategory = () => {
         reloadState={reloadState}
         ref={modalDeleteAllRef}
         cleanItemToDelete={cleanItemToDelete}
+        url="material_categories"
       />
       <ModalDelete
         itemDelete={itemToDelete || []}
         reloadState={reloadState}
         ref={modalDeleteRef}
         cleanItemToDelete={cleanItemToDelete}
+        url="material_categories"
       />
     </Paper>
   );

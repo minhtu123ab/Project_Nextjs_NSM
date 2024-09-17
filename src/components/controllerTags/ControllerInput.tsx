@@ -30,7 +30,7 @@ const ControllerInput: React.FC<IPropControllerInput> = ({
             />
           )}
         />
-        {errors.name && (
+        {errors[name] && (
           <span className="text-red-500">{errors[name].message}</span>
         )}
       </div>

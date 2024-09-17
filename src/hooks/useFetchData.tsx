@@ -2,8 +2,8 @@ import axiosInstance from "@/axios/axiosInstance";
 import { useEffect, useState } from "react";
 import useGetQueryParams from "./useGetQueryParams";
 
-const useFetchData = (url: string) => {
-  const [state, setState] = useState<IState>({
+const useFetchData = <T,>(url: string) => {
+  const [state, setState] = useState<IState<T>>({
     count: 0,
     results: [],
     loading: true,
@@ -22,6 +22,7 @@ const useFetchData = (url: string) => {
             limit: process.env.NEXT_PUBLIC_COUNT,
             offset: (Number(queryParams.page || 1) - 1) * 5,
             name: queryParams.name,
+            category: queryParams.category,
           },
         });
         setState((prev) => ({
@@ -37,7 +38,13 @@ const useFetchData = (url: string) => {
     } finally {
       setState((prev) => ({ ...prev, loading: false }));
     }
-  }, [queryParams.name, queryParams.page, checkCallApi, url]);
+  }, [
+    queryParams.name,
+    queryParams.page,
+    checkCallApi,
+    url,
+    queryParams.category,
+  ]);
 
   const reloadState = () => {
     setCheckCallApi((prev) => !prev);

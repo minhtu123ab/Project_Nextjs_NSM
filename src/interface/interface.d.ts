@@ -15,9 +15,9 @@ interface IDataCategory {
   price_type: string;
 }
 
-interface IState {
+interface IState<T> {
   count: number;
-  results: IDataCategory[];
+  results: T[];
   loading: boolean;
   error: boolean;
 }
@@ -59,6 +59,7 @@ interface IModalDelete {
   itemDelete: string[] | IItemToDelete;
   reloadState: () => void;
   cleanItemToDelete: () => void;
+  url: string;
 }
 
 interface IDataSubmitCategory {
@@ -67,32 +68,42 @@ interface IDataSubmitCategory {
   image?: File[] | string;
 }
 
+interface IDataSubmitMaterial {
+  name?: string;
+  part_number: string;
+  image?: File[] | string;
+  category: string;
+  supplier: string;
+  small_title: string;
+  basic_price: number;
+  type?: number;
+  large_title: string;
+  basic_price: number;
+}
+interface ISetValueMaterial {
+  name?: string;
+  part_number: string;
+  image: NonNullable<string | File[] | undefined>;
+  category: string;
+  supplier: string;
+  small_title: string;
+  basic_price: number;
+  type?: number;
+  large_title: string;
+  basic_price: number;
+}
+
 interface PaginationTableProps {
   count: number;
   cleanItemToDelete: () => void;
 }
 
-interface IPropFormActionCategory {
-  onSubmit: (data: IDataSubmitCategory) => Promise<void>;
+interface IPropFormAction<T> {
+  onSubmit: (data: T) => Promise<void>;
   setValue: UseFormSetValue<FieldValues>;
-  control: Control<{
-    image: NonNullable<string | File[] | undefined>;
-    name: string;
-    price_type: string;
-  }>;
-  errors: FieldErrors<{
-    price_type: string;
-    name: string;
-    image: NonNullable<string | File[] | undefined>;
-  }>;
-  handleSubmit: UseFormHandleSubmit<
-    {
-      price_type: string;
-      name: string;
-      image: NonNullable<string | File[] | undefined>;
-    },
-    undefined
-  >;
+  control: Control<TFieldValues, TContext>;
+  errors: FieldErrors<TFieldValues>;
+  handleSubmit: UseFormHandleSubmit<TFieldValues, TTransformedValues>;
   action: string;
   urlImageEdit?: string;
 }
@@ -114,10 +125,42 @@ interface IPropControllerInput {
 }
 
 interface IDataControllerSelect {
-  value: string;
+  id: string;
   name: string;
 }
 
 interface IPropControllerSelect extends IPropControllerInput {
   data: IDataControllerSelect[];
+}
+
+interface IDataSupplier {
+  id: string;
+  name: string;
+  phone_number: string;
+  address: string;
+  phone: string;
+}
+
+interface IDataMaterial {
+  id: string;
+  name: string;
+  image: string;
+  part_number: string;
+  category: IDataCategory;
+  supplier: IDataSupplier;
+  small_title: string;
+  basic_price: number;
+  type: number;
+  large_title: string;
+}
+
+interface IHocDataFetchingState {
+  data: { [key: string]: unknown[] };
+  loadingHoc: boolean;
+  error: Error | null;
+}
+
+interface IPropFormActionMaterial<T> extends IPropFormAction<T> {
+  state?: IHocDataFetchingState;
+  fetchData?: () => void;
 }

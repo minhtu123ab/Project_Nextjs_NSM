@@ -21,7 +21,7 @@ const style = {
 };
 
 const ModalDelete = React.forwardRef(
-  ({ itemDelete, reloadState, cleanItemToDelete }: IModalDelete, ref) => {
+  ({ itemDelete, reloadState, cleanItemToDelete, url }: IModalDelete, ref) => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -36,7 +36,7 @@ const ModalDelete = React.forwardRef(
         const newIdDelete: string = Array.isArray(itemDelete)
           ? itemDelete.join(",")
           : itemDelete.id.toString();
-        await axiosInstance.delete(`/material_categories/bulk/${newIdDelete}`);
+        await axiosInstance.delete(`/${url}/bulk/${newIdDelete}`);
         toast.success("Delete successfully");
         handleClose();
         reloadState();
