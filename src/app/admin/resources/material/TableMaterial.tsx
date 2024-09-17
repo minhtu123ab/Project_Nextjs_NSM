@@ -6,7 +6,6 @@ import useGetQueryParams from "@/hooks/useGetQueryParams";
 import useSelectDelete from "@/hooks/useSelectDelete";
 import {
   Checkbox,
-  IconButton,
   Paper,
   Table,
   TableBody,
@@ -22,11 +21,9 @@ import TableHeader from "@/components/table/TableHeader";
 import TableHeaderAction from "@/components/table/TableHeaderAction";
 import useFetchData from "@/hooks/useFetchData";
 import useHandleModalDelete from "@/hooks/useHandleModalDelete";
-import useNavigateAction from "@/hooks/useNavigateAction";
 import LoadingTableMaterial from "./LoadingTableMaterial";
 import NoDataTable from "@/components/table/NoDataTable";
-import { HiOutlineEye, HiOutlinePencilAlt } from "react-icons/hi";
-import { HiOutlineTrash } from "react-icons/hi";
+import ActionTable from "@/components/table/ActionTable";
 
 const dataHeaderTable = data.dataHeaderTable;
 
@@ -40,8 +37,6 @@ const TableMaterial = () => {
     openModalDeleteAll,
     openModalDelete,
   } = useHandleModalDelete();
-
-  const { navigateUpdate } = useNavigateAction("formActions/update");
 
   const { state, reloadState } = useFetchData<IDataMaterial>("/material");
 
@@ -147,28 +142,10 @@ const TableMaterial = () => {
                         {item.supplier.name}
                       </span>
                     </TableCell>
-                    <TableCell align="center">
-                      <div className="flex justify-center items-center">
-                        <IconButton
-                          className="hover:bg-green-200"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <HiOutlineEye color="green" />
-                        </IconButton>
-                        <IconButton
-                          className="hover:bg-blue-200"
-                          onClick={(e) => navigateUpdate(e, item.id)}
-                        >
-                          <HiOutlinePencilAlt color="blue" />
-                        </IconButton>
-                        <IconButton
-                          className="hover:bg-red-200"
-                          onClick={(e) => openModalDelete(e, item)}
-                        >
-                          <HiOutlineTrash color="red" />
-                        </IconButton>
-                      </div>
-                    </TableCell>
+                    <ActionTable
+                      item={item}
+                      openModalDelete={openModalDelete}
+                    />
                   </TableRow>
                 ))
               ) : (

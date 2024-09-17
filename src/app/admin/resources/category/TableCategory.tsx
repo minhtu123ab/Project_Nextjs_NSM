@@ -21,12 +21,8 @@ import TableHeader from "@/components/table/TableHeader";
 import TableHeaderAction from "@/components/table/TableHeaderAction";
 import useFetchData from "@/hooks/useFetchData";
 import useHandleModalDelete from "@/hooks/useHandleModalDelete";
-import useNavigateAction from "@/hooks/useNavigateAction";
-import { IconButton } from "@mui/material";
 import NoDataTable from "@/components/table/NoDataTable";
-import { HiOutlinePencilAlt } from "react-icons/hi";
-import { HiOutlineTrash } from "react-icons/hi";
-import { HiOutlineEye } from "react-icons/hi";
+import ActionTable from "@/components/table/ActionTable";
 
 const dataHeaderTable = data.dataHeaderTable;
 
@@ -40,8 +36,6 @@ const TableCategory = () => {
     openModalDeleteAll,
     openModalDelete,
   } = useHandleModalDelete();
-
-  const { navigateUpdate } = useNavigateAction("formActions/update");
 
   const { state, reloadState } = useFetchData<IDataCategory>(
     "/material_categories"
@@ -120,28 +114,10 @@ const TableCategory = () => {
                           : "Quantity"}
                       </span>
                     </TableCell>
-                    <TableCell align="center">
-                      <div className="flex justify-center items-center">
-                        <IconButton
-                          className="hover:bg-green-200"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <HiOutlineEye color="green" />
-                        </IconButton>
-                        <IconButton
-                          className="hover:bg-blue-200"
-                          onClick={(e) => navigateUpdate(e, item.id)}
-                        >
-                          <HiOutlinePencilAlt color="blue" />
-                        </IconButton>
-                        <IconButton
-                          className="hover:bg-red-200"
-                          onClick={(e) => openModalDelete(e, item)}
-                        >
-                          <HiOutlineTrash color="red" />
-                        </IconButton>
-                      </div>
-                    </TableCell>
+                    <ActionTable
+                      item={item}
+                      openModalDelete={openModalDelete}
+                    />
                   </TableRow>
                 ))
               ) : (
