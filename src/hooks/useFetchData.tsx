@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useGetQueryParams from "./useGetQueryParams";
 
 const useFetchData = (url: string) => {
-  const [state, setState] = useState<IStateCategory>({
+  const [state, setState] = useState<IState>({
     count: 0,
     results: [],
     loading: true,

@@ -15,7 +15,7 @@ interface IDataCategory {
   price_type: string;
 }
 
-interface IStateCategory {
+interface IState {
   count: number;
   results: IDataCategory[];
   loading: boolean;
@@ -43,11 +43,10 @@ interface IItemToDelete {
   name: string;
 }
 
-interface IDataEditCategory {
-  id: string;
-  name: string;
-  image: string;
+interface ISetValueFormCategory {
   price_type: string;
+  name: string;
+  image: NonNullable<string | File[] | undefined>;
 }
 
 interface IDataAddCategory {
@@ -99,7 +98,7 @@ interface IPropFormActionCategory {
 }
 
 interface IPropControllerImage {
-  setValue: UseFormSetValue<FieldValues>;
+  setValue: UseFormSetValue<ISetValueFormCategory>;
   control: Control<TFieldValues, TestContext>;
   urlImageEdit?: string;
   errors: FieldErrors<TFieldValues>;

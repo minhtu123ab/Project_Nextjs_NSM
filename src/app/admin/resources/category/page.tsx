@@ -9,7 +9,7 @@ const Category = () => {
       <h1 className="text-3xl text-gray-500">Category</h1>
       <div className="flex justify-between">
         <InputSearch />
-        <ButtonCreate />
+        <ButtonCreate name="Category" />
       </div>
       <TableCategory />
     </div>

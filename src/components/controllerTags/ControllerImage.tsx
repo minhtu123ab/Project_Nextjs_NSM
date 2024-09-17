@@ -14,7 +14,8 @@ const ControllerImage: React.FC<IPropControllerImage> = ({
   urlImageEdit,
   errors,
 }) => {
-  const { urlImage, handleChangValueImage } = useChangImage(setValue);
+  const { urlImage, handleChangValueImage } =
+    useChangImage<ISetValueFormCategory>(setValue);
 
   const [openModal, setOpenModal] = React.useState(false);
 

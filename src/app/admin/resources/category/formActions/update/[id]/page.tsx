@@ -2,7 +2,7 @@
 
 import React, { useEffect } from "react";
 import schema from "@/app/admin/resources/category/schemaYup/schema";
-import { FieldValues, useForm, UseFormSetValue } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axiosInstance from "@/axios/axiosInstance";
 import useFormActions from "../../../hooks/useFormActions";
@@ -27,9 +27,8 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   const { onSubmit } = useFormActions("Update", params.id);
 
-  const { setUrlImage, urlImage } = useChangImage(
-    setValue as unknown as UseFormSetValue<FieldValues>
-  );
+  const { setUrlImage, urlImage } =
+    useChangImage<ISetValueFormCategory>(setValue);
 
   useEffect(() => {
     const fetchData = async () => {
