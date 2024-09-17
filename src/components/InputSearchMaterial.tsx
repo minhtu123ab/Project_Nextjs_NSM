@@ -102,7 +102,7 @@ const InputSearchMaterial: React.FC<IPropInputSearchMaterial> = ({
           sx={{ width: 300 }}
           value={
             dataCategory.find((option) => option.name === searchCategory)
-              ?.name || null
+              ?.name || searchCategory
           }
           onChange={(event, newValue) => {
             setSearchCategory(newValue || "");
