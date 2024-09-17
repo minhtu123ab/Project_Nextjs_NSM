@@ -24,6 +24,9 @@ import useHandleModalDelete from "@/hooks/useHandleModalDelete";
 import useNavigateAction from "@/hooks/useNavigateAction";
 import { IconButton } from "@mui/material";
 import NoDataTable from "@/components/table/NoDataTable";
+import { HiOutlinePencilAlt } from "react-icons/hi";
+import { HiOutlineTrash } from "react-icons/hi";
+import { HiOutlineEye } from "react-icons/hi";
 
 const dataHeaderTable = data.dataHeaderTable;
 
@@ -119,23 +122,23 @@ const TableCategory = () => {
                     </TableCell>
                     <TableCell align="center">
                       <div className="flex justify-center items-center">
-                        <IconButton onClick={(e) => navigateUpdate(e, item.id)}>
-                          <Image
-                            src={"/iconEdit.svg"}
-                            alt=""
-                            width={22}
-                            height={22}
-                            className="w-auto h-auto"
-                          />
+                        <IconButton
+                          className="hover:bg-green-200"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <HiOutlineEye color="green" />
                         </IconButton>
-                        <IconButton onClick={(e) => openModalDelete(e, item)}>
-                          <Image
-                            src={"/iconDelete.svg"}
-                            alt=""
-                            width={22}
-                            height={22}
-                            className="w-auto h-auto"
-                          />
+                        <IconButton
+                          className="hover:bg-blue-200"
+                          onClick={(e) => navigateUpdate(e, item.id)}
+                        >
+                          <HiOutlinePencilAlt color="blue" />
+                        </IconButton>
+                        <IconButton
+                          className="hover:bg-red-200"
+                          onClick={(e) => openModalDelete(e, item)}
+                        >
+                          <HiOutlineTrash color="red" />
                         </IconButton>
                       </div>
                     </TableCell>

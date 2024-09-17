@@ -1,23 +1,21 @@
-// middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+  const { pathname, search } = req.nextUrl;
   const token = req.cookies.get("token")?.value;
 
   if (!token && pathname !== "/auth/login") {
-    const url = req.nextUrl.clone();
-    url.pathname = "/auth/login";
-    url.search = "";
-    return NextResponse.redirect(url);
+    const loginUrl = req.nextUrl.clone();
+    loginUrl.pathname = "/auth/login";
+    loginUrl.searchParams.set("redirectTo", pathname + search);
+    return NextResponse.redirect(loginUrl);
   }
 
-  if (pathname === "/") {
-    const url = req.nextUrl.clone();
-    url.pathname = "/admin/resources/category";
-
-    return NextResponse.redirect(url);
+  if (token && pathname === "/") {
+    const adminUrl = req.nextUrl.clone();
+    adminUrl.pathname = "/admin/resources/category";
+    return NextResponse.redirect(adminUrl);
   }
 
   return NextResponse.next();
@@ -25,6 +23,4 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: ["/admin/:path*", "/"],
-
-  // matcher: "/",
 };

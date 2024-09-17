@@ -1,6 +1,6 @@
 import { Button, Checkbox } from "@mui/material";
-import Image from "next/image";
 import React from "react";
+import { HiOutlineTrash } from "react-icons/hi";
 
 interface ITableHeaderAction {
   checkAll: boolean;
@@ -24,15 +24,7 @@ const TableHeaderAction: React.FC<ITableHeaderAction> = ({
       <Checkbox checked={checkAll} onClick={onClickDeleteAll} />
       {idDelete.length ? (
         <Button
-          startIcon={
-            <Image
-              src={"/iconDelete.svg"}
-              alt=""
-              width={16}
-              height={16}
-              className="w-auto h-auto"
-            />
-          }
+          startIcon={<HiOutlineTrash />}
           onClick={openModalDeleteAll}
           variant="contained"
           color="error"

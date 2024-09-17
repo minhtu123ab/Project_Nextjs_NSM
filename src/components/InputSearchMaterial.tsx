@@ -18,8 +18,8 @@ import withDataFetching from "@/HOC/withDataFetching";
 const url = ["/material_categories"];
 
 interface IPropInputSearchMaterial {
-  state: IHocDataFetchingState;
-  fetchData: () => void;
+  state?: IHocDataFetchingState;
+  fetchData?: () => void;
 }
 interface INameDataFetchingState {
   name: string;
@@ -29,7 +29,11 @@ const InputSearchMaterial: React.FC<IPropInputSearchMaterial> = ({
   state,
   fetchData,
 }) => {
-  const { data, error, loadingHoc } = state;
+  const { data, error, loadingHoc } = state || {
+    data: {},
+    error: null,
+    loadingHoc: false,
+  };
   const dataCategory = (data[url[0]] || []) as INameDataFetchingState[];
   const dataCategorySearch = [
     ...Array.from(new Set(dataCategory.map((item) => item.name))),
@@ -135,7 +139,7 @@ const InputSearchMaterial: React.FC<IPropInputSearchMaterial> = ({
             disabled={loadingHoc}
             onClick={(e) => {
               e.stopPropagation();
-              fetchData();
+              fetchData && fetchData();
             }}
             variant="contained"
             color="error"

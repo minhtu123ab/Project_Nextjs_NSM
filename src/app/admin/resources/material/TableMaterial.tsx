@@ -6,6 +6,7 @@ import useGetQueryParams from "@/hooks/useGetQueryParams";
 import useSelectDelete from "@/hooks/useSelectDelete";
 import {
   Checkbox,
+  IconButton,
   Paper,
   Table,
   TableBody,
@@ -24,6 +25,8 @@ import useHandleModalDelete from "@/hooks/useHandleModalDelete";
 import useNavigateAction from "@/hooks/useNavigateAction";
 import LoadingTableMaterial from "./LoadingTableMaterial";
 import NoDataTable from "@/components/table/NoDataTable";
+import { HiOutlineEye, HiOutlinePencilAlt } from "react-icons/hi";
+import { HiOutlineTrash } from "react-icons/hi";
 
 const dataHeaderTable = data.dataHeaderTable;
 
@@ -146,29 +149,24 @@ const TableMaterial = () => {
                     </TableCell>
                     <TableCell align="center">
                       <div className="flex justify-center items-center">
-                        <div
+                        <IconButton
+                          className="hover:bg-green-200"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <HiOutlineEye color="green" />
+                        </IconButton>
+                        <IconButton
+                          className="hover:bg-blue-200"
                           onClick={(e) => navigateUpdate(e, item.id)}
-                          className="cursor-pointer hover:bg-slate-200 p-2 rounded-lg"
                         >
-                          <Image
-                            src={"/iconEdit.svg"}
-                            alt=""
-                            width={22}
-                            height={22}
-                          />
-                        </div>
-                        <div
+                          <HiOutlinePencilAlt color="blue" />
+                        </IconButton>
+                        <IconButton
+                          className="hover:bg-red-200"
                           onClick={(e) => openModalDelete(e, item)}
-                          className="cursor-pointer hover:bg-slate-200 p-2 rounded-lg"
                         >
-                          <Image
-                            src={"/iconDelete.svg"}
-                            alt=""
-                            width={22}
-                            height={22}
-                            className="w-auto h-auto"
-                          />
-                        </div>
+                          <HiOutlineTrash color="red" />
+                        </IconButton>
                       </div>
                     </TableCell>
                   </TableRow>

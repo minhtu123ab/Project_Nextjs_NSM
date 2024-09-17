@@ -39,8 +39,8 @@ function withDataFetching<T>(
         }, {} as { [key: string]: unknown[] });
 
         setState({ data: dataMap, loadingHoc: false, error: null });
-        if (parseInt((Math.random() * 100).toString()) % 5 !== 0)
-          throw new Error();
+        // if (parseInt((Math.random() * 100).toString()) % 5 !== 0)
+        //   throw new Error();
       } catch (e) {
         console.error(e);
         setState({ data: {}, loadingHoc: false, error: e as Error });

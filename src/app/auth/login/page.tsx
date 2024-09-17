@@ -7,7 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
@@ -21,7 +21,9 @@ const schema = yup.object().shape({
 
 const Page = () => {
   const [loading, setLoading] = React.useState(false);
+
   const router = useRouter();
+  const query = useSearchParams();
 
   const {
     control,
@@ -37,6 +39,7 @@ const Page = () => {
     defaultValues: { email: "", password: "" },
   });
 
+  console.log(query.get("redirectTo"));
   const onSubmit = async (data: IDataLogin) => {
     try {
       setLoading(true);
@@ -53,7 +56,7 @@ const Page = () => {
       });
 
       toast.success("Login successful");
-      router.push("/admin/resources/category");
+      router.push(query.get("redirectTo") || "/admin/resources/category");
     } catch (error) {
       console.log(error);
       toast.error("Login failed");
