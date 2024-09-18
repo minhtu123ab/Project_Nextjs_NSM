@@ -29,6 +29,7 @@ const InputSearch = () => {
       className="flex items-center justify-center gap-1"
     >
       <TextField
+        type="search"
         autoComplete="off"
         placeholder="Search"
         size="small"

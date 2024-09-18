@@ -18,15 +18,12 @@ function withDataFetching<T>(
       try {
         setState((prevState) => ({ ...prevState, loadingHoc: true }));
 
-        // Fetch the count first with limit=1
         const countResponses = await Promise.all(
           urls.map((url) => axiosInstance.get(url, { params: { limit: 1 } }))
         );
 
-        // Extract count from the first API call
         const counts = countResponses.map((response) => response.data.count);
 
-        // Now fetch all data with limit=count
         const fetchedData = await Promise.all(
           urls.map((url, index) =>
             axiosInstance.get(url, { params: { limit: counts[index] } })

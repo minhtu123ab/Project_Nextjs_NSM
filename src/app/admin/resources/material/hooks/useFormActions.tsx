@@ -1,8 +1,7 @@
-"use client";
-
 import axiosInstance from "@/axios/axiosInstance";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
+import { AxiosError } from "axios";
 
 type actionType = "Create" | "Update";
 
@@ -39,8 +38,20 @@ const useFormActions = (actionType?: actionType, id?: string) => {
         `/admin/resources/material?${actionType === "Update" ? query : ""}`
       );
     } catch (e) {
-      console.error(e);
-      toast.error(actionType + " failed");
+      if (e instanceof AxiosError) {
+        console.error(e);
+        if (
+          e.response?.status === 400 &&
+          e.response?.data?.part_number?.length
+        ) {
+          toast.error("Part Number already exists");
+        } else {
+          toast.error(actionType + " failed");
+        }
+      } else {
+        console.error(e);
+        toast.error(actionType + " failed");
+      }
     }
   };
 

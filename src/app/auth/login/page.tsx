@@ -39,7 +39,6 @@ const Page = () => {
     defaultValues: { email: "", password: "" },
   });
 
-  console.log(query.get("redirectTo"));
   const onSubmit = async (data: IDataLogin) => {
     try {
       setLoading(true);

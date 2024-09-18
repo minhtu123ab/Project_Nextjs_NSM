@@ -66,6 +66,7 @@ const InputSearchMaterial: React.FC<IPropInputSearchMaterial> = ({
       className="flex items-center justify-center gap-3"
     >
       <TextField
+        type="search"
         autoComplete="off"
         placeholder="Search"
         size="small"
@@ -95,60 +96,74 @@ const InputSearchMaterial: React.FC<IPropInputSearchMaterial> = ({
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      {!error ? (
-        <Autocomplete
-          disablePortal
-          options={dataCategorySearch}
-          sx={{ width: 300 }}
-          value={
-            dataCategory.find((option) => option.name === searchCategory)
-              ?.name || searchCategory
-          }
-          onChange={(event, newValue) => {
-            setSearchCategory(newValue || "");
-          }}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              onChange={(e) => setSearchCategory(e.target.value)}
-              size="small"
-              placeholder="Search Category"
-              sx={{
-                "& .MuiInputBase-root": {
-                  height: "32px",
-                  width: "300px",
-                  borderRadius: 200,
-                  paddingLeft: 1,
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    border: "none",
-                  },
-                },
-              }}
-              className="bg-white rounded-full h-8 shadow-md"
-            />
-          )}
-        />
-      ) : (
-        <div className="flex justify-around items-center bg-white w-[300px] shadow-md rounded-full h-8">
-          <span>Error loading data</span>
-          <Button
-            className="normal-case"
+
+      <Autocomplete
+        disablePortal
+        options={error ? ["Error Data"] : dataCategorySearch}
+        sx={{ width: 300 }}
+        value={
+          dataCategory.find((option) => option.name === searchCategory)?.name ||
+          searchCategory
+        }
+        onChange={(event, newValue) => {
+          setSearchCategory(newValue || "");
+        }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            onChange={(e) => setSearchCategory(e.target.value)}
             size="small"
-            disabled={loadingHoc}
-            onClick={(e) => {
-              e.stopPropagation();
-              fetchData && fetchData();
+            placeholder="Search Category"
+            sx={{
+              "& .MuiInputBase-root": {
+                height: "32px",
+                width: "300px",
+                borderRadius: 200,
+                paddingLeft: 1,
+              },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  border: "none",
+                },
+              },
             }}
-            variant="contained"
-            color="error"
-            endIcon={loadingHoc && <CircularProgress size={24} />}
-          >
-            ReLoad
-          </Button>
-        </div>
-      )}
+            className="bg-white rounded-full h-8 shadow-md"
+          />
+        )}
+        renderOption={(props, option) => {
+          if (error) {
+            return (
+              <div
+                className=" flex justify-around pt-1 w-full"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <span>Error loading data</span>
+                <Button
+                  className="normal-case"
+                  size="small"
+                  disabled={loadingHoc}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    fetchData && fetchData();
+                  }}
+                  variant="contained"
+                  color="error"
+                  endIcon={loadingHoc && <CircularProgress size={24} />}
+                >
+                  ReLoad
+                </Button>
+              </div>
+            );
+          } else {
+            return (
+              <li {...props}>
+                <span>{option}</span>
+              </li>
+            );
+          }
+        }}
+      />
+
       <Button
         type="submit"
         size="small"

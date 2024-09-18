@@ -12,6 +12,7 @@ export default function AdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <div className="bg-[#F0F4F8] min-h-screen pt-20">
       <Navbar />
