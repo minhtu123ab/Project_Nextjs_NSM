@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
+import ActionTableLoading from "@/components/table/tableLoading/ActionTableLoading";
 import { Checkbox, TableCell, TableRow } from "@mui/material";
-import Image from "next/image";
 
 const LoadingTableMaterial = () => {
   return (
@@ -38,22 +38,7 @@ const LoadingTableMaterial = () => {
       <TableCell>
         <div className="w-32 h-4 bg-gray-300 rounded"></div>
       </TableCell>
-      <TableCell>
-        <div className="flex justify-center items-center">
-          <div className="cursor-not-allowed p-2 rounded-lg">
-            <Image src={"/iconEdit.svg"} alt="" width={22} height={22} />
-          </div>
-          <div className="cursor-not-allowed p-2 rounded-lg">
-            <Image
-              src={"/iconDelete.svg"}
-              alt=""
-              width={22}
-              height={22}
-              className="w-auto h-auto"
-            />
-          </div>
-        </div>
-      </TableCell>
+      <ActionTableLoading />
     </TableRow>
   );
 };

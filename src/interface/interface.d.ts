@@ -124,13 +124,14 @@ interface IPropControllerInput {
   type: string;
 }
 
-interface IDataControllerSelect {
+interface IDataNameID {
   id: string;
   name: string;
+  [key: string]: unknown;
 }
 
 interface IPropControllerSelect extends IPropControllerInput {
-  data: IDataControllerSelect[];
+  data: IDataNameID[];
 }
 
 interface IDataSupplier {
@@ -155,7 +156,7 @@ interface IDataMaterial {
 }
 
 interface IHocDataFetchingState {
-  data: { [key: string]: unknown[] };
+  data: { [key: string]: IDataNameID[] };
   loadingHoc: boolean;
   error: Error | null;
 }

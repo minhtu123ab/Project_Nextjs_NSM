@@ -44,7 +44,7 @@ const ActionTable = <T extends IIdData>({
           <HiOutlineTrash color="red" />
         </IconButton>
       </div>
-    </TableCell>
+    </TableCell> 
   );
 };
 

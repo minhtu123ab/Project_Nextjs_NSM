@@ -18,7 +18,7 @@ const Page = () => {
     defaultValues: {
       part_number: "",
       name: "",
-      image: [] || "",
+      image: [].length > 0 ? [] : "",
       category: "",
       supplier: "",
       small_title: "",

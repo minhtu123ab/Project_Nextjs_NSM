@@ -113,7 +113,7 @@ const FormActionMaterial: React.FC<
                   <ControllerSelect
                     key={index}
                     control={control}
-                    data={item.data as IDataControllerSelect[]}
+                    data={item.data as IDataNameID[]}
                     errors={errors}
                     label={item.label}
                     name={item.name}

@@ -21,7 +21,7 @@ const Page = ({ params }: { params: { id: string } }) => {
     defaultValues: {
       price_type: "",
       name: "",
-      image: [] || "",
+      image: [].length > 0 ? [] : "",
     },
   });
 

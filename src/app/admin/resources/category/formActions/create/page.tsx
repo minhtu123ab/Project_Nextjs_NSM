@@ -18,7 +18,7 @@ const Page = () => {
     defaultValues: {
       price_type: "",
       name: "",
-      image: [] || "",
+      image: [].length > 0 ? [] : "",
     },
   });
 

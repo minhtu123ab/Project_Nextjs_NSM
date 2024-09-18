@@ -36,7 +36,7 @@ function withDataFetching<T>(
         const dataMap = urls.reduce((acc, url, index) => {
           acc[url] = fetchedData[index].data.results;
           return acc;
-        }, {} as { [key: string]: unknown[] });
+        }, {} as { [key: string]: IDataNameID[] });
 
         setState({ data: dataMap, loadingHoc: false, error: null });
         // if (parseInt((Math.random() * 100).toString()) % 5 !== 0)
