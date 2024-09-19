@@ -90,7 +90,7 @@ const FormActionMaterial: React.FC<
             </Paper>
           </div>
         </div>
-        <Paper sx={{ padding: "1.25rem", plex: 3, borderRadius: "1.5rem" }}>
+        <Paper sx={{ padding: "1.25rem", flex: 3, borderRadius: "1.5rem" }}>
           <div>
             <div className="flex gap-5">
               <div className="flex flex-[1] flex-col gap-3">

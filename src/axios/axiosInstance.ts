@@ -7,10 +7,11 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const tokenAccess = localStorage.getItem("token") || null;
+    const tokenLocal = localStorage.getItem("token") || null;
+    const tokenData = tokenLocal ? JSON.parse(tokenLocal) : null;
 
-    if (tokenAccess) {
-      config.headers.Authorization = `Bearer ${tokenAccess}`;
+    if (tokenData) {
+      config.headers.Authorization = `Bearer ${tokenData.access}`;
     } else {
       window.location.href = "/auth/login";
     }
@@ -51,7 +52,6 @@ axiosInstance.interceptors.response.use(
           return Promise.reject(error);
         }
       } catch (refreshError) {
-        // window.location.href = "/auth/login";
         console.log("first");
         return Promise.reject(refreshError);
       }

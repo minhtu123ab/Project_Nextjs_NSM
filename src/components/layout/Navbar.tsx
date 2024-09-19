@@ -18,7 +18,6 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
 
 export default function MenuAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -42,7 +41,6 @@ export default function MenuAppBar() {
   const onCLickLogout = () => {
     router.push("/auth/login");
     localStorage.removeItem("token");
-    Cookies.remove("token");
     handleClose();
   };
 

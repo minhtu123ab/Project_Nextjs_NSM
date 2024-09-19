@@ -1,10 +1,11 @@
 import axios from "axios";
-import Cookies from "js-cookie";
 
 const refreshToken = async () => {
-  const token = Cookies.get("token");
+  const token = localStorage.getItem("token") || null;
+  const tokenData = token ? JSON.parse(token) : null;
+
   const TokenRefresh = {
-    refresh: token,
+    refresh: tokenData.refresh,
   };
   try {
     const urlServer = process.env.NEXT_PUBLIC_URL_SERVER_REFRESH_TOKEN;
@@ -13,16 +14,12 @@ const refreshToken = async () => {
       TokenRefresh
     );
     const token: IToken = response.data;
-    localStorage.setItem("token", token.access);
-    Cookies.set("token", token.refresh, {
-      expires: 30 / 1440,
-    });
+    localStorage.setItem("token", JSON.stringify(token));
     return token.access;
   } catch (err) {
     console.log(err);
     window.location.href = "auth/login";
     localStorage.removeItem("token");
-    Cookies.remove("token");
     return null;
   }
 };

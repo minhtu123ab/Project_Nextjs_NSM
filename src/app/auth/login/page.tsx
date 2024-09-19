@@ -9,7 +9,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
-import Cookies from "js-cookie";
 
 const schema = yup.object().shape({
   email: yup
@@ -48,13 +47,11 @@ const Page: React.FC = () => {
 
       const token: { access: string; refresh: string; id: string } =
         response.data;
-      localStorage.setItem("token", token.access);
-      Cookies.set("token", token.refresh, {
-        expires: 30 / 1440,
-      });
+      localStorage.setItem("token", JSON.stringify(token));
 
       toast.success("Login successful");
       router.push(redirectTo);
+      console.log(redirectTo);
     } catch (error) {
       console.error(error);
       toast.error("Login failed. Please check your credentials and try again.");

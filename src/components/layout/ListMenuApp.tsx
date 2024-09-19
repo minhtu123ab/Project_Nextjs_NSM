@@ -99,12 +99,15 @@ export default function ListMenuApp({
                 <Link href={itemChild.path}>
                   <ListItemButton
                     onClick={toggleDrawer}
-                    className={`mx-9 rounded-full ${
-                      pathname === itemChild.path
-                        ? "bg-sky-100 text-sky-500"
-                        : ""
-                    }`}
-                    sx={{ pl: 3 }}
+                    sx={{
+                      mx: "36px",
+                      borderRadius: "9999px",
+                      backgroundColor:
+                        pathname === itemChild.path ? "#e0f2fe" : "inherit",
+                      color:
+                        pathname === itemChild.path ? "#0ea5e9" : "inherit",
+                      pl: 3,
+                    }}
                   >
                     <ListItemText primary={itemChild.text} />
                   </ListItemButton>
