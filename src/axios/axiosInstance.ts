@@ -7,11 +7,10 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    const tokenLocal = localStorage.getItem("token") || null;
-    const tokenData = tokenLocal ? JSON.parse(tokenLocal) : null;
+    const tokenAccess = localStorage.getItem("token") || null;
 
-    if (tokenData) {
-      config.headers.Authorization = `Bearer ${tokenData.access}`;
+    if (tokenAccess) {
+      config.headers.Authorization = `Bearer ${tokenAccess}`;
     } else {
       window.location.href = "/auth/login";
     }

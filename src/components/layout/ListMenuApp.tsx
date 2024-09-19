@@ -102,10 +102,12 @@ export default function ListMenuApp({
                     sx={{
                       mx: "36px",
                       borderRadius: "9999px",
-                      backgroundColor:
-                        pathname === itemChild.path ? "#e0f2fe" : "inherit",
-                      color:
-                        pathname === itemChild.path ? "#0ea5e9" : "inherit",
+                      backgroundColor: pathname.includes(itemChild.path)
+                        ? "#e0f2fe"
+                        : "inherit",
+                      color: pathname.includes(itemChild.path)
+                        ? "#0ea5e9"
+                        : "inherit",
                       pl: 3,
                     }}
                   >
