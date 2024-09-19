@@ -8,7 +8,7 @@ interface ITableHeader {
 const TableHeader: React.FC<ITableHeader> = ({ dataHeaderTable }) => {
   return (
     <TableHead>
-      <TableRow className="bg-gray-100">
+      <TableRow sx={{ backgroundColor: "#f3f4f6" }}>
         {dataHeaderTable.map((item, index) => (
           <TableCell
             sx={{ fontWeight: "bold", fontSize: 18 }}

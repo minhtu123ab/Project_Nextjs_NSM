@@ -50,8 +50,12 @@ export default function MenuAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
         position="static"
-        className="bg-white"
-        sx={{ zIndex: 100, position: "fixed", top: 0 }}
+        sx={{
+          zIndex: 100,
+          position: "fixed",
+          top: 0,
+          backgroundColor: "white",
+        }}
       >
         <Toolbar>
           <IconButton
@@ -99,7 +103,7 @@ export default function MenuAppBar() {
                 input: {
                   startAdornment: (
                     <InputAdornment position="start">
-                      <SearchIcon className="text-xl" />
+                      <SearchIcon />
                     </InputAdornment>
                   ),
                 },
@@ -108,15 +112,27 @@ export default function MenuAppBar() {
           </Box>
 
           <div>
-            <NotificationsNoneIcon className="text-slate-600" />
-            <AccountCircleIcon className="text-slate-600 ml-4" />
+            <NotificationsNoneIcon
+              sx={{
+                color: "#475569",
+              }}
+            />
+            <AccountCircleIcon
+              sx={{
+                color: "#475569",
+                marginLeft: "16px",
+              }}
+            />
             <Button
               id="basic-button"
               aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
               onClick={handleMenu}
-              className="text-slate-600 normal-case"
+              sx={{
+                color: "#475569",
+                textTransform: "none",
+              }}
               endIcon={anchorEl ? <ExpandLess /> : <ExpandMore />}
             >
               Admintractor

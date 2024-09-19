@@ -77,14 +77,22 @@ const ModalDelete = React.forwardRef(
             <div className="flex justify-end mt-10 gap-5">
               <Button
                 onClick={handleClose}
-                className="normal-case text-base"
+                sx={{
+                  textTransform: "none",
+                  fontSize: "1rem",
+                  lineHeight: "1.5rem",
+                }}
                 size="small"
                 variant="outlined"
               >
                 Cannel
               </Button>
               <Button
-                className="normal-case text-base"
+                sx={{
+                  textTransform: "none",
+                  fontSize: "1rem",
+                  lineHeight: "1.5rem",
+                }}
                 size="small"
                 variant="contained"
                 color="error"

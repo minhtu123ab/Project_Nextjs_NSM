@@ -43,7 +43,13 @@ const ControllerImage: React.FC<IPropControllerImage> = ({
                 className="w-72 h-44 rounded-3xl object-cover transition-transform duration-300 group-hover:scale-125"
               />
               <div className="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <ZoomInIcon className="text-white text-4xl" />
+                <ZoomInIcon
+                  sx={{
+                    color: "white",
+                    fontSize: "2.25rem",
+                    lineHeight: "2.5rem",
+                  }}
+                />
               </div>
             </div>
             <Modal open={openModal} onClose={handleCloseModal}>
@@ -77,7 +83,12 @@ const ControllerImage: React.FC<IPropControllerImage> = ({
               component="label"
               variant="outlined"
               startIcon={<FileUploadOutlinedIcon />}
-              className="normal-case text-base mt-2"
+              sx={{
+                textTransform: "none",
+                fontSize: "1rem",
+                lineHeight: "1.5rem",
+                marginTop: "0.5rem",
+              }}
               size="small"
             >
               Change Image
@@ -97,7 +108,9 @@ const ControllerImage: React.FC<IPropControllerImage> = ({
               onClick={() => document.getElementById("fileInput")?.click()}
               className="w-72 h-44 rounded-3xl bg-gray-300 flex items-center justify-center flex-col cursor-pointer hover:bg-gray-200"
             >
-              <CloudUploadOutlinedIcon className="text-9xl" />
+              <CloudUploadOutlinedIcon
+                sx={{ fontSize: "8rem", lineHeight: 1 }}
+              />
               <p>
                 Image<span className="text-red-500">*</span>:
                 .png/.jpg/.jpeg/.svg

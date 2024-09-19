@@ -4,7 +4,6 @@ import {
   Autocomplete,
   Button,
   CircularProgress,
-  IconButton,
   InputAdornment,
   TextField,
 } from "@mui/material";
@@ -12,8 +11,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import React, { useState } from "react";
 import useSetQueryParams from "@/hooks/useSetQueryParams";
 import useGetQueryParams from "@/hooks/useGetQueryParams";
-import SearchOffIcon from "@mui/icons-material/SearchOff";
 import withDataFetching from "@/HOC/withDataFetching";
+import ClearSearch from "./ClearSearch";
 
 const url = ["/material_categories"];
 
@@ -45,6 +44,7 @@ const InputSearchMaterial: React.FC<IPropInputSearchMaterial> = ({
     queryParams.category || ""
   );
   const setQueryParams = useSetQueryParams();
+
   const onSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setQueryParams({
@@ -52,11 +52,8 @@ const InputSearchMaterial: React.FC<IPropInputSearchMaterial> = ({
       category: searchCategory,
     });
   };
-  const onClear = () => {
-    setQueryParams({
-      name: "",
-      category: "",
-    });
+
+  const clearStateSearch = () => {
     setSearch("");
     setSearchCategory("");
   };
@@ -88,7 +85,7 @@ const InputSearchMaterial: React.FC<IPropInputSearchMaterial> = ({
           input: {
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon className="text-xl" />
+                <SearchIcon />
               </InputAdornment>
             ),
           },
@@ -172,12 +169,7 @@ const InputSearchMaterial: React.FC<IPropInputSearchMaterial> = ({
       >
         Search
       </Button>
-      <IconButton
-        className="text-gray-500 cursor-pointer rounded-full hover:bg-gray-200"
-        onClick={onClear}
-      >
-        <SearchOffIcon />
-      </IconButton>
+      <ClearSearch clearStateSearch={clearStateSearch} />
     </form>
   );
 };

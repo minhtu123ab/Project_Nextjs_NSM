@@ -13,7 +13,7 @@ const NoDataTable = ({ size }: { size: number }) => {
           justifyContent="center"
           alignItems="center"
           padding={2}
-          className="text-gray-500"
+          sx={{ color: "#6b7280" }}
         >
           <ErrorOutlineIcon style={{ fontSize: 100, color: "#b0b0b0" }} />
           <span className="text-4xl font-mono font-bold mt-2">No Data</span>

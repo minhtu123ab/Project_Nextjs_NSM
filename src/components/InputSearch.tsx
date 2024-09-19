@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import React, { useState } from "react";
 import useSetQueryParams from "@/hooks/useSetQueryParams";
 import useGetQueryParams from "@/hooks/useGetQueryParams";
-import SearchOffIcon from "@mui/icons-material/SearchOff";
+import ClearSearch from "./ClearSearch";
 
 const InputSearch = () => {
   const queryParams = useGetQueryParams();
@@ -17,10 +17,7 @@ const InputSearch = () => {
       name: search,
     });
   };
-  const onClear = () => {
-    setQueryParams({
-      name: "",
-    });
+  const clearStateSearch = () => {
     setSearch("");
   };
   return (
@@ -51,7 +48,7 @@ const InputSearch = () => {
           input: {
             startAdornment: (
               <InputAdornment position="start">
-                <SearchIcon className="text-xl" />
+                <SearchIcon />
               </InputAdornment>
             ),
           },
@@ -59,12 +56,7 @@ const InputSearch = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <div
-        className="text-gray-500 cursor-pointer rounded-full hover:bg-gray-200"
-        onClick={onClear}
-      >
-        <SearchOffIcon className="m-1" />
-      </div>
+      <ClearSearch clearStateSearch={clearStateSearch} />
     </form>
   );
 };

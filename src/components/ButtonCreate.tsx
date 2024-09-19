@@ -11,7 +11,11 @@ const ButtonCreate = ({ name }: { name: string }) => {
     <Button
       onClick={navigateCreate}
       variant="contained"
-      className="text-white normal-case px-4"
+      sx={{
+        color: "white",
+        textTransform: "none",
+        padding: "0rem 1rem",
+      }}
     >
       Create {name}
     </Button>

@@ -28,7 +28,7 @@ const TableHeaderAction: React.FC<ITableHeaderAction> = ({
           onClick={openModalDeleteAll}
           variant="contained"
           color="error"
-          className="normal-case text-base"
+          sx={{ textTransform: "none", fontSize: "1rem", lineHeight: "1.5rem" }}
           size="small"
         >
           {idDelete.length} Select

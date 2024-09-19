@@ -56,7 +56,12 @@ const TableCategory = () => {
   } = useSelectDelete(state.results as IIdData[]);
 
   return (
-    <Paper className="w-full rounded-lg">
+    <Paper
+      sx={{
+        width: "100%",
+        borderRadius: "8px",
+      }}
+    >
       <TableHeaderAction
         checkAll={checkAll}
         idDelete={idDelete}
@@ -64,16 +69,27 @@ const TableCategory = () => {
         openModalDeleteAll={openModalDeleteAll}
       />
       <TableContainer>
-        <Table className="items-center" aria-label="simple table">
+        <Table
+          sx={{
+            alignItems: "center",
+          }}
+          aria-label="simple table"
+        >
           <TableHeader dataHeaderTable={dataHeaderTable} />
           <TableBody>
             {!state.loading ? (
               state.results.length ? (
                 state.results.map((item: IDataCategory, index: number) => (
                   <TableRow
-                    className={`cursor-pointer hover:bg-gray-100 ${
-                      idDelete.includes(item.id) && "bg-gray-100"
-                    }`}
+                    sx={{
+                      cursor: "pointer",
+                      "&:hover": {
+                        backgroundColor: "#f3f4f6",
+                      },
+                      ...(idDelete.includes(item.id) && {
+                        backgroundColor: "#f3f4f6",
+                      }),
+                    }}
                     onClick={() => onClickSelectDelete(item as IIdData)}
                     key={index}
                   >

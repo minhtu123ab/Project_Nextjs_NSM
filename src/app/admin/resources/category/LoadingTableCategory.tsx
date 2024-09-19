@@ -3,14 +3,26 @@ import { Checkbox, TableCell, TableRow } from "@mui/material";
 
 const LoadingTableCategory = () => {
   return (
-    <TableRow className="animate-pulse bg-gray-200">
+    <TableRow
+      sx={{
+        animation: "pulse 1.5s infinite",
+        backgroundColor: "#e5e7eb",
+      }}
+    >
       <TableCell>
-        <Checkbox className="transform ml-2" disabled />
+        <Checkbox
+          sx={{
+            marginLeft: 2,
+          }}
+          disabled
+        />
       </TableCell>
-      <TableCell className="p-4 items">
+      <TableCell sx={{ padding: 1, alignItems: "center" }}>
         <div className="w-full h-4 bg-gray-300 rounded"></div>
       </TableCell>
-      <TableCell className="flex justify-center">
+      <TableCell
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
         <div className="w-52 h-28 bg-gray-300 rounded-lg mt-2 mb-2"></div>
       </TableCell>
       <TableCell>

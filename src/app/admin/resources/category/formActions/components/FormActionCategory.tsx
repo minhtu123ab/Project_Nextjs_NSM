@@ -32,7 +32,16 @@ const FormActionCategory: React.FC<IPropFormAction<IDataSubmitCategory>> = ({
       >
         <div className="flex-[2] flex justify-center">
           <div>
-            <Paper className="p-4 rounded-3xl flex justify-around flex-col items-center">
+            <Paper
+              sx={{
+                padding: "1rem",
+                borderRadius: "1.5rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
               <ControllerImage
                 setValue={setValue}
                 control={control}
@@ -42,7 +51,7 @@ const FormActionCategory: React.FC<IPropFormAction<IDataSubmitCategory>> = ({
             </Paper>
           </div>
         </div>
-        <Paper className="p-8 flex-[3] rounded-3xl">
+        <Paper sx={{ padding: "2rem", flex: 3, borderRadius: "1.5rem" }}>
           <div className="flex flex-col gap-5">
             <ControllerInput
               control={control}
@@ -65,16 +74,16 @@ const FormActionCategory: React.FC<IPropFormAction<IDataSubmitCategory>> = ({
             <div className="flex justify-around mt-3">
               <Button
                 disabled={loading}
-                className="w-24"
                 variant="outlined"
                 onClick={onClickBack}
+                sx={{ textTransform: "none", width: "6rem" }}
               >
                 Back
               </Button>
               <Button
                 disabled={loading}
                 endIcon={loading && <CircularProgress size={24} />}
-                className="w-24"
+                sx={{ textTransform: "none", width: "6rem" }}
                 variant="contained"
                 type="submit"
               >

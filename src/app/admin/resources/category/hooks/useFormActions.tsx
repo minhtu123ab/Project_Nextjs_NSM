@@ -6,6 +6,7 @@ type actionType = "Create" | "Update";
 
 const useFormActions = (actionType?: actionType, id?: string) => {
   const router = useRouter();
+
   const query = useSearchParams().toString();
 
   const onClickBack = () => {

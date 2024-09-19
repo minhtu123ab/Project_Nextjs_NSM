@@ -26,25 +26,25 @@ const ActionTable = <T extends IIdData>({
     <TableCell align="center">
       <div className="flex justify-center items-center">
         <IconButton
-          className="hover:bg-green-200"
+          sx={{ ":hover": { backgroundColor: "#bbf7d0" } }}
           onClick={(e) => e.stopPropagation()}
         >
           <HiOutlineEye color="green" />
         </IconButton>
         <IconButton
-          className="hover:bg-blue-200"
+          sx={{ ":hover": { backgroundColor: "#bfdbfe" } }}
           onClick={(e) => navigateUpdate(e, item.id)}
         >
           <HiOutlinePencilAlt color="blue" />
         </IconButton>
         <IconButton
-          className="hover:bg-red-200"
+          sx={{ ":hover": { backgroundColor: "#fecaca" } }}
           onClick={(e) => openModalDelete(e, item)}
         >
           <HiOutlineTrash color="red" />
         </IconButton>
       </div>
-    </TableCell> 
+    </TableCell>
   );
 };
 

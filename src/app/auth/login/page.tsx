@@ -19,21 +19,20 @@ const schema = yup.object().shape({
   password: yup.string().required("Password is required"),
 });
 
-const Page = () => {
+const Page: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
-
   const router = useRouter();
+
   const query = useSearchParams();
+
+  const redirectTo = query.get("redirectTo") || "/admin/resources/category";
 
   const {
     control,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<{
-    email: string;
-    password: string;
-  }>({
+  } = useForm<IDataLogin>({
     resolver: yupResolver(schema),
     mode: "onTouched",
     defaultValues: { email: "", password: "" },
@@ -55,19 +54,13 @@ const Page = () => {
       });
 
       toast.success("Login successful");
-      router.push(query.get("redirectTo") || "/admin/resources/category");
+      router.push(redirectTo);
     } catch (error) {
-      console.log(error);
-      toast.error("Login failed");
+      console.error(error);
+      toast.error("Login failed. Please check your credentials and try again.");
     } finally {
       setLoading(false);
-      reset(
-        {
-          email: "",
-          password: "",
-        },
-        { keepValues: false }
-      );
+      reset();
     }
   };
 
@@ -84,7 +77,7 @@ const Page = () => {
         <div className="flex-[2] items-center py-32">
           <div className="flex flex-col items-center gap-3">
             <Image
-              src={"/iconLogo.svg"}
+              src="/iconLogo.svg"
               className="w-auto h-[70px]"
               width={70}
               height={20}
@@ -139,7 +132,15 @@ const Page = () => {
               )}
             </div>
             <Button
-              className="font-mono normal-case font-bold text-lg bg-cyan-400 text-zinc-800 mt-3"
+              sx={{
+                fontFamily: "monospace",
+                textTransform: "none",
+                fontWeight: "bold",
+                fontSize: "1.125rem",
+                backgroundColor: "#22D3EE",
+                color: "#f8f9fa",
+                marginTop: "0.75rem",
+              }}
               type="submit"
               disabled={loading}
               endIcon={loading && <CircularProgress size={24} />}

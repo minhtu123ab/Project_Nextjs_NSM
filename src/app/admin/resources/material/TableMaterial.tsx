@@ -64,7 +64,10 @@ const TableMaterial = () => {
       />
       <TableContainer>
         <Table
-          className="items-center min-w-[1800px]"
+          sx={{
+            alignItems: "center",
+            minWidth: "1800px",
+          }}
           aria-label="simple table"
         >
           <TableHeader dataHeaderTable={dataHeaderTable} />
@@ -73,9 +76,15 @@ const TableMaterial = () => {
               state.results.length ? (
                 state.results.map((item: IDataMaterial, index: number) => (
                   <TableRow
-                    className={`cursor-pointer hover:bg-gray-100 ${
-                      idDelete.includes(item.id) && "bg-gray-100"
-                    }`}
+                    sx={{
+                      cursor: "pointer",
+                      "&:hover": {
+                        backgroundColor: "#f3f4f6",
+                      },
+                      ...(idDelete.includes(item.id) && {
+                        backgroundColor: "#f3f4f6",
+                      }),
+                    }}
                     onClick={() => onClickSelectDelete(item as IIdData)}
                     key={index}
                   >
@@ -121,10 +130,26 @@ const TableMaterial = () => {
                         {item.type}
                       </span>
                     </TableCell>
-                    <TableCell align="center" className="truncate max-w-36">
+                    <TableCell
+                      align="center"
+                      sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        maxWidth: "9rem",
+                      }}
+                    >
                       {item.large_title}
                     </TableCell>
-                    <TableCell align="center" className="truncate max-w-36">
+                    <TableCell
+                      align="center"
+                      sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        maxWidth: "9rem",
+                      }}
+                    >
                       {item.small_title}
                     </TableCell>
                     <TableCell align="center">
@@ -132,12 +157,28 @@ const TableMaterial = () => {
                         {item.basic_price}
                       </span>
                     </TableCell>
-                    <TableCell className="truncate max-w-36" align="center">
+                    <TableCell
+                      sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        maxWidth: "9rem",
+                      }}
+                      align="center"
+                    >
                       <span className="bg-orange-300 px-2 py-1 rounded-full text-orange-800">
                         {item.category.name}
                       </span>
                     </TableCell>
-                    <TableCell className="truncate max-w-36" align="center">
+                    <TableCell
+                      sx={{
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        maxWidth: "9rem",
+                      }}
+                      align="center"
+                    >
                       <span className="bg-cyan-300 px-2 py-1 rounded-full text-cyan-800">
                         {item.supplier.name}
                       </span>

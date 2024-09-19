@@ -1,11 +1,11 @@
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const useNavigateAction = (urlAction: string) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
 
-  const query = searchParams.toString();
+  const query = useSearchParams().toString();
+
+  const pathname = usePathname();
 
   const navigateCreate = () => {
     router.push(`${pathname}/${urlAction}?${query}`);

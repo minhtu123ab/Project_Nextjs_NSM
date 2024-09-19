@@ -39,7 +39,7 @@ const FormActionMaterial: React.FC<
   if (loadingHoc)
     return (
       <div className="flex justify-center items-center mt-60">
-        <CircularProgress size={80} thickness={4.5} /> {/* Loading icon lớn */}
+        <CircularProgress size={80} thickness={4.5} />
       </div>
     );
 
@@ -51,7 +51,7 @@ const FormActionMaterial: React.FC<
           color="primary"
           startIcon={<Replay />}
           onClick={fetchData}
-          sx={{ mt: 2, fontSize: "1.25rem", padding: "0.75rem 1.5rem" }} // Button lớn hơn với padding
+          sx={{ mt: 2, fontSize: "1.25rem", padding: "0.75rem 1.5rem" }}
         >
           Reload
         </Button>
@@ -71,7 +71,16 @@ const FormActionMaterial: React.FC<
       >
         <div className="flex-[1] flex justify-center">
           <div>
-            <Paper className="p-4 rounded-3xl flex justify-around flex-col items-center">
+            <Paper
+              sx={{
+                padding: "1rem",
+                borderRadius: "1.5rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
               <ControllerImage
                 setValue={setValue}
                 control={control}
@@ -81,7 +90,7 @@ const FormActionMaterial: React.FC<
             </Paper>
           </div>
         </div>
-        <Paper className="p-5 flex-[3] rounded-3xl">
+        <Paper sx={{ padding: "1.25rem", plex: 3, borderRadius: "1.5rem" }}>
           <div>
             <div className="flex gap-5">
               <div className="flex flex-[1] flex-col gap-3">
@@ -127,7 +136,7 @@ const FormActionMaterial: React.FC<
             <div className="flex justify-around mt-5">
               <Button
                 disabled={loading}
-                className="w-24"
+                sx={{ textTransform: "none", width: "6rem" }}
                 variant="outlined"
                 onClick={onClickBack}
               >
@@ -136,7 +145,7 @@ const FormActionMaterial: React.FC<
               <Button
                 disabled={loading}
                 endIcon={loading && <CircularProgress size={24} />}
-                className="w-24"
+                sx={{ textTransform: "none", width: "6rem" }}
                 variant="contained"
                 type="submit"
               >
