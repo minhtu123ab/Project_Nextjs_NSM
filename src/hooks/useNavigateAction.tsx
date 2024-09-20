@@ -1,6 +1,6 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-const useNavigateAction = (urlAction: string) => {
+const useNavigateAction = (action: string) => {
   const router = useRouter();
 
   const query = useSearchParams().toString();
@@ -8,12 +8,12 @@ const useNavigateAction = (urlAction: string) => {
   const pathname = usePathname();
 
   const navigateCreate = () => {
-    router.push(`${pathname}/${urlAction}?${query}`);
+    router.push(`${pathname}/${action}?${query}`);
   };
 
   const navigateUpdate = (e: { stopPropagation: () => void }, id: string) => {
     e.stopPropagation();
-    router.push(`${pathname}/formActions/update/${id}?${query}`);
+    router.push(`${pathname}/${action}/${id}?${query}`);
   };
   return { navigateCreate, navigateUpdate };
 };

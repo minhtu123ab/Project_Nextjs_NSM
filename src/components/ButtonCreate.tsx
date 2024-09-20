@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import React from "react";
 
 const ButtonCreate = ({ name }: { name: string }) => {
-  const { navigateCreate } = useNavigateAction(`formActions/create`);
+  const { navigateCreate } = useNavigateAction("create");
 
   return (
     <Button

@@ -13,6 +13,7 @@ interface IDataCategory {
   name: string;
   image: string;
   price_type: string;
+  created_at: string;
 }
 
 interface IState<T> {
@@ -139,7 +140,10 @@ interface IDataSupplier {
   name: string;
   phone_number: string;
   address: string;
-  phone: string;
+  longitude: number;
+  latitude: number;
+  created_at: string;
+  updated_at: string;
 }
 
 interface IDataMaterial {
@@ -153,6 +157,8 @@ interface IDataMaterial {
   basic_price: number;
   type: number;
   large_title: string;
+  created_at: string;
+  updated_at: string;
 }
 
 interface IHocDataFetchingState {
@@ -164,4 +170,20 @@ interface IHocDataFetchingState {
 interface IPropFormActionMaterial<T> extends IPropFormAction<T> {
   state?: IHocDataFetchingState;
   fetchData?: () => void;
+}
+
+interface IActionTable<T> {
+  item: T;
+  openModalDelete: (
+    e: {
+      stopPropagation: () => void;
+    },
+    item: T
+  ) => void;
+  openModalDetails: (
+    e: {
+      stopPropagation: () => void;
+    },
+    item: T
+  ) => void;
 }

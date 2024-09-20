@@ -1,8 +1,7 @@
 import React from "react";
-// import InputSearch from "@/components/InputSearch";
 import ButtonCreate from "@/components/ButtonCreate";
-import TableMaterial from "./TableMaterial";
-import InputSearchMaterial from "@/components/InputSearchMaterial";
+import TableMaterial from "./_components/TableMaterial";
+import InputSearchMaterial from "./_components/InputSearchMaterial";
 
 const Material = () => {
   return (
