@@ -16,10 +16,7 @@ const dataControllerInputLeft = data.dataControllerInputLeft;
 const dataControllerInputRight = data.dataControllerInputRight;
 const dataControllerSelect = data.dataControllerSelect;
 
-const FormActionMaterial: React.FC<
-  IPropFormActionMaterial<IDataSubmitMaterial>
-> = ({
-  onSubmit,
+const FormActionMaterial: React.FC<IPropFormActionMaterial> = ({
   setValue,
   control,
   errors,
@@ -28,8 +25,12 @@ const FormActionMaterial: React.FC<
   urlImageEdit,
   state,
   fetchData,
+  id,
 }) => {
-  const { onClickBack } = useFormActions();
+  const { onClickBack, onSubmit } = useFormActions(
+    `${action as actionType}`,
+    id
+  );
 
   const { handleSubmitAddFormData, loading } =
     useSubmitNoDoubleClick<IDataSubmitMaterial>(onSubmit);

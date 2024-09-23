@@ -9,16 +9,19 @@ import useSubmitNoDoubleClick from "@/hooks/useSubmitNoDoubleClick";
 
 const dataPriceType = data.dataPriceType;
 
-const FormActionCategory: React.FC<IPropFormAction<IDataSubmitCategory>> = ({
-  onSubmit,
+const FormActionCategory: React.FC<IPropFormAction> = ({
   setValue,
   control,
   errors,
   handleSubmit,
   action,
   urlImageEdit,
+  id,
 }) => {
-  const { onClickBack } = useFormActions();
+  const { onClickBack, onSubmit } = useFormActions(
+    `${action as actionType}`,
+    id
+  );
 
   const { handleSubmitAddFormData, loading } =
     useSubmitNoDoubleClick<IDataSubmitCategory>(onSubmit);

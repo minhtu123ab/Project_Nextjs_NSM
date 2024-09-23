@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import schema from "@/app/admin/resources/category/_schemaYup/schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axiosInstance from "@/axios/axiosInstance";
-import useFormActions from "../../../_hooks/useFormActions";
 import FormActionCategory from "../../_components/FormActionCategory";
 import useChangImage from "@/hooks/useChangImage";
+import { CircularProgress } from "@mui/material";
 
 const Page = ({ params }: { params: { id: string } }) => {
   const {
@@ -24,8 +24,6 @@ const Page = ({ params }: { params: { id: string } }) => {
       image: [].length > 0 ? [] : "",
     },
   });
-
-  const { onSubmit } = useFormActions("Update", params.id);
 
   const { setUrlImage, urlImage } =
     useChangImage<ISetValueFormCategory>(setValue);
@@ -48,15 +46,23 @@ const Page = ({ params }: { params: { id: string } }) => {
   }, [params.id, setUrlImage, setValue]);
 
   return (
-    <FormActionCategory
-      onSubmit={onSubmit}
-      setValue={setValue}
-      control={control}
-      errors={errors}
-      handleSubmit={handleSubmit}
-      action="Update"
-      urlImageEdit={urlImage ?? undefined}
-    />
+    <Suspense
+      fallback={
+        <div className="flex justify-center">
+          <CircularProgress size={80} />
+        </div>
+      }
+    >
+      <FormActionCategory
+        setValue={setValue}
+        control={control}
+        errors={errors}
+        handleSubmit={handleSubmit}
+        action="Update"
+        urlImageEdit={urlImage ?? undefined}
+        id={params.id}
+      />
+    </Suspense>
   );
 };
 

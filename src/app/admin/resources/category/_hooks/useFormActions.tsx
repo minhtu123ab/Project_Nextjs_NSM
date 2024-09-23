@@ -2,8 +2,6 @@ import axiosInstance from "@/axios/axiosInstance";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 
-type actionType = "Create" | "Update";
-
 const useFormActions = (actionType?: actionType, id?: string) => {
   const router = useRouter();
 

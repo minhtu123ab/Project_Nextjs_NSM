@@ -54,7 +54,10 @@ const ModalDetailsCategory = React.forwardRef(
                 <strong>Name:</strong> {itemDetails?.name}
               </Typography>
               <Typography variant="body1" gutterBottom>
-                <strong>Price Type:</strong> {itemDetails?.price_type}
+                <strong>Price Type:</strong>{" "}
+                {itemDetails?.price_type === "per_quantity"
+                  ? "Quantity"
+                  : "Metter"}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 <strong>Created At:</strong> {itemDetails?.created_at}

@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
+
+import React, { Suspense } from "react";
 import schema from "@/app/admin/resources/category/_schemaYup/schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import useFormActions from "../../_hooks/useFormActions";
 import FormActionCategory from "../_components/FormActionCategory";
+import { CircularProgress } from "@mui/material";
 
 const Page = () => {
   const {
@@ -22,17 +23,22 @@ const Page = () => {
     },
   });
 
-  const { onSubmit } = useFormActions("Create");
-
   return (
-    <FormActionCategory
-      onSubmit={onSubmit}
-      setValue={setValue}
-      control={control}
-      errors={errors}
-      handleSubmit={handleSubmit}
-      action="Create"
-    />
+    <Suspense
+      fallback={
+        <div className="flex justify-center">
+          <CircularProgress size={80} />
+        </div>
+      }
+    >
+      <FormActionCategory
+        setValue={setValue}
+        control={control}
+        errors={errors}
+        handleSubmit={handleSubmit}
+        action="Create"
+      />
+    </Suspense>
   );
 };
 

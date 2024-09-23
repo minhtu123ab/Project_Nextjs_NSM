@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import schema from "@/app/admin/resources/material/_schemaYup/schema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axiosInstance from "@/axios/axiosInstance";
-import useFormActions from "../../../_hooks/useFormActions";
 import useChangImage from "@/hooks/useChangImage";
 import FormActionMaterial from "../../_components/FormActionMaterial";
+import { CircularProgress } from "@mui/material";
 
 const Page = ({ params }: { params: { id: string } }) => {
   const {
@@ -30,8 +30,6 @@ const Page = ({ params }: { params: { id: string } }) => {
       large_title: "",
     },
   });
-
-  const { onSubmit } = useFormActions("Update", params.id);
 
   const { setUrlImage, urlImage } = useChangImage<ISetValueMaterial>(setValue);
 
@@ -59,15 +57,23 @@ const Page = ({ params }: { params: { id: string } }) => {
   }, [params.id, setUrlImage, setValue]);
 
   return (
-    <FormActionMaterial
-      onSubmit={onSubmit}
-      setValue={setValue}
-      control={control}
-      errors={errors}
-      handleSubmit={handleSubmit}
-      action="Update"
-      urlImageEdit={urlImage ?? undefined}
-    />
+    <Suspense
+      fallback={
+        <div className="flex justify-center">
+          <CircularProgress size={80} />
+        </div>
+      }
+    >
+      <FormActionMaterial
+        setValue={setValue}
+        control={control}
+        errors={errors}
+        handleSubmit={handleSubmit}
+        action="Update"
+        urlImageEdit={urlImage ?? undefined}
+        id={params.id}
+      />
+    </Suspense>
   );
 };
 

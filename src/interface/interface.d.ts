@@ -99,14 +99,14 @@ interface PaginationTableProps {
   cleanItemToDelete: () => void;
 }
 
-interface IPropFormAction<T> {
-  onSubmit: (data: T) => Promise<void>;
+interface IPropFormAction {
   setValue: UseFormSetValue<FieldValues>;
   control: Control<TFieldValues, TContext>;
   errors: FieldErrors<TFieldValues>;
   handleSubmit: UseFormHandleSubmit<TFieldValues, TTransformedValues>;
   action: string;
   urlImageEdit?: string;
+  id?: string;
 }
 
 interface IPropControllerImage {
@@ -167,7 +167,7 @@ interface IHocDataFetchingState {
   error: Error | null;
 }
 
-interface IPropFormActionMaterial<T> extends IPropFormAction<T> {
+interface IPropFormActionMaterial extends IPropFormAction {
   state?: IHocDataFetchingState;
   fetchData?: () => void;
 }
@@ -187,3 +187,5 @@ interface IActionTable<T> {
     item: T
   ) => void;
 }
+
+type actionType = "Create" | "Update";
