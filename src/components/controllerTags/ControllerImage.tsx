@@ -34,7 +34,7 @@ const ControllerImage: React.FC<IPropControllerImage> = ({
               className="relative w-72 h-44 rounded-3xl overflow-hidden"
             >
               <Image
-                src={urlImage || urlImageEdit || ""}
+                src={urlImage || urlImageEdit || "/path/to/placeholder.png"}
                 priority
                 alt="Uploaded Image"
                 unoptimized={true}
@@ -42,6 +42,7 @@ const ControllerImage: React.FC<IPropControllerImage> = ({
                 height={100}
                 className="w-72 h-44 rounded-3xl object-cover transition-transform duration-300 group-hover:scale-125"
               />
+
               <div className="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <ZoomInIcon
                   sx={{
